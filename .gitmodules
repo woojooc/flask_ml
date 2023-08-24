@@ -1,0 +1,8 @@
+[submodule "bing_image_downloader"]
+	path = bing_image_downloader
+	url = https://github.com/gurugaurav/bing_image_downloader
+
+[submodule "PaddleOCR"]
+        path = PaddleOCR
+        url = https://github.com/PaddlePaddle/PaddleOCR.git
+
