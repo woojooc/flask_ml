@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, render_template, redirect
 
 import speech_recognition as sr
 from gtts import gTTS
@@ -7,13 +7,15 @@ import time
 
 bp = Blueprint('stt_tts',__name__,url_prefix='/stt_tts')
 
-@bp.route('/', methods=['POST'])
+@bp.route('/', methods=['GET','POST'])
 def stt_tts_main():
     r = sr.Recognizer()
+    #result = ""
     try:
         while True:
             # 음성 입력 받기
             with sr.Microphone() as source:
+                
                 print('음성을 입력하세요')
                 audio = r.listen(source)
                 result = r.recognize_google(audio, language='ko-KR')
@@ -27,3 +29,5 @@ def stt_tts_main():
                 playsound.playsound(path)  # 녹음파일 실행
     except:
         print('마이크로폰 에러')
+
+    return render_template('sst_index.html', transcript=result)
